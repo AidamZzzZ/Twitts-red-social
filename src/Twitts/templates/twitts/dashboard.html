@@ -9,12 +9,41 @@
             <div class="box">
                 {{ twitts.body }}
                 <span class="is-small has-text-grey-light">
-                    ({{ twitts.created_at }} by {{ twitts.user.username }})
+                    ({{ twitts.publish }} by {{ twitts.user.username }})
                 </span>
             </div>
         {% endfor %}
     {% endfor %}
 </div>
+
+
+<div class="block">
+    <div class="block">
+        <h2 class="title is-2">Add a Dweet</p>
+    </div>
+    <div class="block">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="button is-success is-fullwidth is-medium mt-5" type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
+
+<div class="block">
+    <a href="{% url "twitts:list" %}">
+        <button class="button is-dark is-outlined is-fullwidth">All profiles</button>
+    </a>
+</div>
+
+<div class="block">
+    <a href="{% url "twitts:profile" request.user.profile.id %}">
+        <button class="button is-success is-light is-outlined is-fullwidth">My Profile</button>
+    </a>
+</div>
+
+
+
 
 {% endblock content %}
 
